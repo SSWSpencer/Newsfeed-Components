@@ -85,9 +85,83 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'All that Glitters is Gold',
+    date: 'Feb 30, 1999',
+    firstParagraph: `Somebody once told me she was thumb in the world is her finger dumb with sharpest tool in the shed the shape of an L on her I
+     ain't thesomebody looking kinda forehead gonna roll me once told me and her dumb with sharpest on her thumb in of an L the shape I ain't the her
+     finger once told me she was tool in the shed looking kinda forehead the world is and her somebody gonna roll me gonna roll me I ain't the she was
+     sharpest forehead the shape her finger looking kinda of an L somebody dumb with the world is once told me and her tool in the shed on her thumb in`,
+
+    secondParagraph: `Well, your brain gets smart start coming fed to the rules and they don't well the years and I hit the ground running not to live for 
+     fun but your head gets dumb stop coming didn't make sense start coming and I hit the ground running well the years your brain gets smart didn't make
+     sense not to live for fun and they don't stop coming but your head gets dumb fed to the rules start coming well the years didn't make sense your brain
+     gets smart but your head gets dumb fed to the rules and I hit the ground running not to live for fun and they don't stop coming`,
+
+    thirdParagraph: `Hey now, on go play get your game you're a get paid all star rock star hey now get your show on hey now you're an you're an rock star
+     you're a hey now get paid get your game get your show on all star hey now on go play you're a get your show on get paid you're an on go play get your
+     game all star rock star hey now hey nowon go play rock star get paid you're an all star get your show on hey now get your game hey now you're a `
+  },
+  {
+  title: 'Bebop',
+    date: 'Wednesday 49, 2010',
+    firstParagraph: `bebopbebopbeoboebeobpeboebopeboebopebopebopebope bope bopebopebope bope bope bope bope bop ebop ebope bope bope e bopebop bop
+     bebeop eopb oebope bopebopeopebope bope bope bope bopepoebob pobe pobe pobe bopebope bope bope bope bope bope bope bope bop ebope bopeb boeboeb 
+     bebop ebo ebope bope bopepobe pobe opbe opbe pobeboep ebope bope bope bopebop boe bopebop bope bopebop ope bope bopebop bope bope bop ebope bop b
+     bebe ope be pobe opbe opbe opbe bope bope bope bope bope boe bope bopeboebeb ebope be boe bope boe boe boeb b bop ebopebop bopebopebiop ebopopbe`,
+
+    secondParagraph: `bebopbebopbeoboebeobpeboebopeboebopebopebopebope bope bopebopebope bope bope bope bope bop ebop ebope bope bope e bopebop bop
+    bebeop eopb oebope bopebopeopebope bope bope bope bopepoebob pobe pobe pobe bopebope bope bope bope bope bope bope bope bop ebope bopeb boeboeb 
+    bebop ebo ebope bope bopepobe pobe opbe opbe pobeboep ebope bope bope bopebop boe bopebop bope bopebop ope bope bopebop bope bope bop ebope bop b
+    bebe ope be pobe opbe opbe opbe bope bope bope bope bope boe bope bopeboebeb ebope be boe bope boe boe boeb b bop ebopebop bopebopebiop ebopopbe`,
+
+    thirdParagraph: `bebopbebopbeoboebeobpeboebopeboebopebopebopebope bope bopebopebope bope bope bope bope bop ebop ebope bope bope e bopebop bop
+    bebeop eopb oebope bopebopeopebope bope bope bope bopepoebob pobe pobe pobe bopebope bope bope bope bope bope bope bope bop ebope bopeb boeboeb 
+    bebop ebo ebope bope bopepobe pobe opbe opbe pobeboep ebope bope bope bopebop boe bopebop bope bopebop ope bope bopebop bope bope bop ebope bop b
+    bebe ope be pobe opbe opbe opbe bope bope bope bope bope boe bope bopeboebeb ebope be boe bope boe boe boeb b bop ebopebop bopebopebiop ebopopbe `
   }
 ];
 
+function createArticle(nm, day, p1, p2, p3){
+  const article = document.createElement('div');
+  const name = document.createElement('h2');
+  const date = document.createElement('p');
+  const par1 = document.createElement('p');
+  const par2 = document.createElement('p');
+  const par3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  article.append(name);
+  article.append(date);
+  article.append(par1);
+  article.append(par2);
+  article.append(par3);
+  article.append(expandButton);
+
+  article.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  name.textContent = nm;
+  date.textContent = day;
+  par1.textContent = p1;
+  par2.textContent = p2;
+  par3.textContent = p3;
+  expandButton.textContent = "Expand";
+
+  expandButton.addEventListener('click', () =>{
+    article.classList.toggle('article-open');
+  })
+
+
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+ data.map(element => {
+   articles.append(createArticle(element.title, element.date, element.firstParagraph, element.secondParagraph, element.thirdParagraph));
+ })
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
